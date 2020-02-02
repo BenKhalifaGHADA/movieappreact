@@ -1,12 +1,12 @@
 import React from 'react'
-import {Button,Card, Col, Row } from 'antd';
-import StarRating from '../StarRating/StarRating.js';
-import Uuid from 'uuid/v4';
+import {Rate,Card, Col, Row } from 'antd';
+//import StarRating from '../StarRating/StarRating.js';
+//import Uuid from 'uuid/v4';
 
 // Au niveau la fonction CardMovie , il aura le passage de deux props
 //La liste des movies et de la fonction addnewMovie
 /////////////////////////////////////////////////////////////////
-export default function CardMovie({data = [],onaddnewMovie=()=>{}}){
+export default function CardMovie({data,onaddnewMovie=()=>{},handlechange=()=>{}}){
     return (
         <div >
           <Row gutter={16}>
@@ -14,7 +14,8 @@ export default function CardMovie({data = [],onaddnewMovie=()=>{}}){
           <Col key={el.id} span={8}>
           <Card title={el.title}  cover={<img alt="example" src={el.url}/>} bordered={false}>
           Date de sortie: {el.date_sortie}
-          <StarRating/>
+          <br/>
+          <Rate onChange={()=>handlechange(el.rating)} value={el.rating} />
         </Card>
           </Col>
           ))}
