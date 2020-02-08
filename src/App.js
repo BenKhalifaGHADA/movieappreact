@@ -113,7 +113,7 @@ export default class App extends Component {
           <br/><br/>
         </header>
         <main>
-          <Card data={this.getAllMovies()} onaddnewMovie={(ch) => this.addnewMovie(ch)} handlechange={(ch)=>this.handleChange(ch)} />
+          <Card data={this.getAllMovies()} data={this.state.movies} handlechange={(ch)=>this.handleChange(ch)} />
           <Form add={(ch)=>this.addnewMovie(ch)}/>
           {/* <Formulaire
             wrappedComponentRef={this.saveFormRef}

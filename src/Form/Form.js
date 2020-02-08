@@ -8,7 +8,7 @@ export default class Form extends Component {
             this.state={
                 text:"",
                 url:"",
-                date:"",
+                date_sortie:"",
                 rate:""
 
             }  
@@ -21,12 +21,18 @@ export default class Form extends Component {
     });
   };
 
-//   handleOk = e => {
-//     console.log(e);
-//     this.setState({
-//       visible: false,
-//     });
-//   };
+  handleOk = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
+      text:e.target.value,
+      url:e.target.value,
+      date_sortie:e.target.value,
+      
+      
+    });
+    this.props.add({id:Uuid(),title:this.state.text,url:this.state.url,date_sortie:this.state.date_sortie,rate:this.state.rate})
+  };
 
   handleChange1=(e)=>{
     this.setState({
@@ -42,7 +48,7 @@ export default class Form extends Component {
 
   handleChange3=(e)=>{
     this.setState({
-        date:e.target.value
+      date_sortie:e.target.value
     })
   }
 
@@ -69,20 +75,21 @@ export default class Form extends Component {
                 <Modal
                     title="Add new movie"
                     visible={this.state.visible}
-                    
+                    onOk={this.handleOk}
                     onCancel={this.handleCancel}
                 >
                     <form className="w3-container">
-                       Title of movie: <input name="title" placeholder="Enter title" type="text" value={this.state.title} onChange={this.handleChange1} />
+                    
+                       Title of movie: <input name="title" placeholder="Enter title" type="text" value={this.state.text} onChange={this.handleChange1} />
                        <br/><br/>
                        URL of movie: <input name="url" placeholder="Enter url" type="text" value={this.state.url} onChange={this.handleChange2} />
                        <br/><br/>
-                       Date: <input name="date" placeholder="date" type="number" value={this.state.date} onChange={this.handleChange3} />
+                       Date: <input name="date" placeholder="date" type="text" value={this.state.date_sortie} onChange={this.handleChange3} />
                        <br/><br/>
-                       Rating: <input name="rate" placeholder="rate" type="number" value={this.state.rate} onChange={this.handleChange4} />
+                       Rating: <input name="rate" placeholder="rate" type="text" value={this.state.rate} onChange={this.handleChange4} />
                        <br/><br/>
                     
-                       <input type="button"  value="ADD" onClick={()=>this.props.add({id:Uuid(),title:this.state.title,url:this.state.rate})}/>
+                      
                     </form>
                     
                 </Modal>

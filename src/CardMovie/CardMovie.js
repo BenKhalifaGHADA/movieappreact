@@ -15,7 +15,7 @@ export default function CardMovie({data,onaddnewMovie=()=>{},handlechange=()=>{}
           <Card title={el.title}  cover={<img alt="example" src={el.url}/>} bordered={false}>
           Date de sortie: {el.date_sortie}
           <br/>
-          <Rate onChange={()=>handlechange(el.rating)} value={el.rating} />
+          <Rate onChange={()=>handlechange(el.rate)} value={el.rate} />
         </Card>
           </Col>
           ))}
