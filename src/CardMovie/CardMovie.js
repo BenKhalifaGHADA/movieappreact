@@ -1,12 +1,13 @@
 import React from 'react'
 import {Rate,Card, Col, Row } from 'antd';
+import Spinner from '../spinner/Spinner.js';
 //import StarRating from '../StarRating/StarRating.js';
 //import Uuid from 'uuid/v4';
 
 // Au niveau la fonction CardMovie , il aura le passage de deux props
 //La liste des movies et de la fonction addnewMovie
 /////////////////////////////////////////////////////////////////
-export default function CardMovie({data,onaddnewMovie=()=>{},handlechange=()=>{}}){
+function CardMovie({data,onaddnewMovie=()=>{},handlechange=()=>{}}){
     return (
         <div >
           <Row gutter={16}>
@@ -34,3 +35,4 @@ export default function CardMovie({data,onaddnewMovie=()=>{},handlechange=()=>{}
            
     )
 }
+export default Spinner(CardMovie);

@@ -3,7 +3,8 @@ import './App.css';
 import Card from './CardMovie/CardMovie.js';
 import React, { Component } from 'react';
 import { Rate,Input } from 'antd';
-import Form from './Form/Form.js'
+import Form from './Form/Form.js';
+
 //import Formulaire from './Formulaire/Formulaire.js';
 const movie1={
   id: 1,
@@ -28,6 +29,8 @@ const movie3={
   rate: 4
 };
 
+
+
 export default class App extends Component {
 
   constructor(props) {
@@ -37,11 +40,25 @@ export default class App extends Component {
       value: 1,//rate, MinRatingfilter
       titlefilter:'',
       movies: [movie1,movie2,movie3],
+      loading: true
       
       
     }
     }
-  ///For add new movie/////
+
+    /////////////////Begin spinner//////
+    componentDidMount() {
+      setTimeout(() => {
+        this.setState({
+          loading: false
+        });
+      }, 5000);
+    }
+
+    ///////////////End Spinner//////////
+  
+  
+    ///For add new movie/////
   addnewMovie = (newmovies) => {
     this.setState({
       movies: this.state.movies.concat(newmovies)
@@ -56,48 +73,21 @@ export default class App extends Component {
     )
     }
 
-  //////////Begin for show/hide modal/////////////
-  // showModal = () => {
-  //   this.setState({ visible: true });
-  // };
-
-  // handleCancel = () => {
-  //   this.setState({ visible: false });
-  // };
-
-  // handleCreate = () => {
-  //   const { form } = this.formRef.props;
-  //   form.validateFields((err, values) => {
-  //     if (!err) {
-  //       //return;
-  //         message.loading('You are stying in... ', 2.5).then(() => {
-  //         message.success('Movie added');
-  //         console.log('Received values of form: ', values);
-  //       })
-  //     }
-  //     // console.log('Received values of form: ', values);
-  //     form.resetFields();
-  //     this.setState({
-  //       visible: false,
-  //      });
-  //  });
-
-  // };
-  // saveFormRef = formRef => {
-  //   this.formRef = formRef;
-  // }
-  /////////////////////////End for show/hide modal//////////////////////
   handleChange = (x) => {
     this.setState({ x });
   };
   render() {
     const { value } = this.state;
     const { Search } = Input;
+  
+    
     
 
     return (
+      
+      
       <div className="App" style={{ background: '#ECECEC', padding: '30px' }}>
-        <header>
+       <header>
           <Search className="search"
             placeholder="input search text"
             enterButton="Search"
@@ -113,7 +103,7 @@ export default class App extends Component {
           <br/><br/>
         </header>
         <main>
-          <Card data={this.getAllMovies()} data={this.state.movies} handlechange={(ch)=>this.handleChange(ch)} />
+          <Card data={this.getAllMovies()} data={this.state.movies} handlechange={(ch)=>this.handleChange(ch)} loading={this.state.loading}/>
           <Form add={(ch)=>this.addnewMovie(ch)}/>
           {/* <Formulaire
             wrappedComponentRef={this.saveFormRef}
